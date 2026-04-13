@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشريح الألم والتعافي | أحببت وغداً - إعداد قيس جازي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.260.0/umd/lucide.min.js"></script>
+    <style>
+        body {
+            font-family: 'Amiri', serif; /* خط الكتاب الأساسي */
+            background-color: #0f172a; /* لون داكن كبداية */
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .font-cairo { font-family: 'Cairo', sans-serif; }
+        .font-ruqaa { font-family: 'Aref Ruqaa', serif; }
+
+        /* نسيج الورق القديم */
+        .paper-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+        }
+
+        /* تأثير التراكم أثناء التمرير (Sticky Stacking) */
+        .stage-section {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 -20px 50px rgba(0,0,0,0.5);
+            transition: filter 0.3s ease;
+        }
+
+        /* تأثيرات الصور */
+        .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .img-overlay {
+                background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.2) 100%);
+            }
+        }
+
+        .content-z { z-index: 10; position: relative; }
+
+        /* حركات الظهور */
+        .fade-up {
+            animation: fadeUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+
+        /* التوقيع */
+        .signature {
+            font-family: 'Aref Ruqaa', serif;
+            transform: rotate(-5deg);
+            display: inline-block;
+        }
+
+        /* كتاب ثلاثي الأبعاد */
+        .book-mockup {
+            box-shadow: inset 4px 0 10px rgba(0,0,0,0.5), 10px 10px 30px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-900 selection:text-white">
+
+    <!-- شريط التنقل المخفي تقريباً (لطابع سينمائي) -->
+    <nav class="fixed top-0 w-full z-50 p-6 mix-blend-difference">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-white font-ruqaa text-2xl tracking-widest border-b border-white/30 pb-1">أحببتُ وغداً</div>
+            <div class="text-white/70 font-cairo text-sm uppercase tracking-widest flex items-center gap-2">
+                <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                إعداد: <span class="text-white font-bold">قيس جازي</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- الغلاف الافتتاحي (Hero) -->
+    <header class="relative h-screen flex flex-col justify-center items-center text-center paper-texture overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&q=80&w=2000" alt="صورة تعبيرية للفوضى النفسية" class="w-full h-full object-cover opacity-30 grayscale filter blur-[2px]">
+            <div class="absolute inset-0 bg-slate-950/80"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl px-4 fade-up">
+            <p class="text-rose-500 font-cairo tracking-[0.3em] text-sm md:text-base mb-6 uppercase">مقاربة نفسية من ص 165</p>
+            <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight text-white">
+                تشريح <span class="text-transparent bg-clip-text bg-gradient-to-l from-rose-400 to-slate-400 font-ruqaa italic">الألم</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-slate-300 leading-relaxed mb-10 font-light">
+                كيف يتدرج العقل البشري من "صدمة الخديعة" في العلاقات المؤذية إلى "بر الأمان"؟ <br>
+                <span class="text-base text-slate-500 mt-4 block font-cairo">تطبيق نموذج كيبلر-روس (مراحل الحزن الخمس) على ضحايا النرجسية.</span>
+            </p>
+            
+            <div class="mt-16 animate-bounce opacity-50">
+                <span class="block text-xs font-cairo mb-2 tracking-widest">اسحب للأسفل لتبدأ الرحلة</span>
+                <i data-lucide="chevron-down" class="w-6 h-6 mx-auto"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- نبذة عن الكتاب (القسم الجديد) -->
+    <section class="relative py-24 bg-[#111827] text-slate-300 paper-texture z-20 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                
+                <!-- تصميم تخيلي لغلاف الكتاب -->
+                <div class="md:w-1/3 flex justify-center fade-up delay-1">
+                    <div class="w-56 h-80 bg-gradient-to-br from-rose-950 to-slate-900 border-r-8 border-[#3b0716] rounded-l-md book-mockup flex flex-col items-center justify-center p-6 text-center transform -rotate-2 hover:rotate-0 transition duration-700 relative overflow-hidden">
+                        <div class="absolute inset-0 paper-texture opacity-60"></div>
+                        <i data-lucide="feather" class="w-8 h-8 text-rose-500/50 absolute top-6 right-6"></i>
+                        <h3 class="font-ruqaa text-3xl text-rose-200 z-10 mb-2 leading-tight">أحببتُ<br>وغداً</h3>
+                        <p class="font-cairo text-xs mt-2 text-rose-400/80 z-10 uppercase tracking-widest">التعافي من العلاقات المؤذية</p>
+                        <div class="mt-auto z-10 font-cairo text-sm text-slate-400 border-t border-rose-900/50 pt-4 w-full">د. عماد رشاد عثمان</div>
+                    </div>
+                </div>
+
+                <!-- معلومات الكتاب -->
+                <div class="md:w-2/3 fade-up delay-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="h-[1px] w-12 bg-rose-500 block"></span>
+                        <h2 class="font-cairo text-rose-500 tracking-widest text-sm uppercase">بطاقة تعريفية</h2>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 font-ruqaa">دليل الخروج من العتمة</h3>
+                    
+                    <div class="font-cairo text-lg leading-loose text-slate-400 space-y-4">
+                        <p>
+                            صدر كتاب <strong class="text-slate-200">"أحببت وغداً"</strong> في <strong class="text-slate-200">يناير 2019</strong> عن دار الرواق للنشر والتوزيع، بقلم الطبيب والباحث في علم النفس <strong class="text-slate-200">د. عماد رشاد عثمان</strong>.
+                        </p>
+                        <p>
+                            يُعد هذا الكتاب بمثابة مرآة نفسية عميقة ومشرط جراح يفكك آليات العلاقات السامة والمؤذية (وخاصة مع الشخصيات النرجسية والسيكوباتية). لا يكتفي الكاتب بتشخيص أساليب تلاعب "الوغد"، بل يأخذ بيد الضحية في رحلة تعافٍ حقيقية ومؤلمة أحياناً.
+                        </p>
+                        <p>
+                            في <strong class="text-rose-400">الصفحة 165</strong>، يستعين الكاتب بنموذج "إليزابيث كيبلر روس" ليوضح أن التعافي من هذه العلاقات يشبه تماماً مراحل الحداد على الموتى؛ فنحن لا نفقد أشخاصاً فقط، بل نفقد أجزاءً من أرواحنا.
+                        </p>
+                    </div>
+
+                    <!-- تفاصيل سريعة -->
+                    <div class="flex flex-wrap gap-6 mt-8 font-cairo text-sm border-t border-slate-800 pt-6">
+                        <div class="flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-full border border-slate-800">
+                            <i data-lucide="user" class="w-4 h-4 text-rose-500"></i>
+                            <span class="text-slate-300">د. عماد رشاد عثمان</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-full border border-slate-800">
+                            <i data-lucide="calendar" class="w-4 h-4 text-rose-500"></i>
+                            <span class="text-slate-300">الطبعة الأولى 2019</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-full border border-slate-800">
+                            <i data-lucide="bookmark" class="w-4 h-4 text-rose-500"></i>
+                            <span class="text-slate-300">دار الرواق للنشر</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- مساحة الحاويات المتراكمة (مراحل كيبلر روس) -->
+    <main class="relative z-30">
+
+        <!-- المرحلة 1: الإنكار -->
+        <section class="stage-section bg-slate-900 paper-texture text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?auto=format&fit=crop&q=80&w=1920" alt="ضباب ورؤية مشوشة" class="w-full h-full object-cover opacity-40">
+                <div class="img-overlay"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto w-full px-6 md:px-12 content-z flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <span class="text-6xl md:text-9xl font-black text-slate-800 opacity-50 absolute -top-10 -right-10 md:-top-20 md:right-0">01</span>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-2 text-slate-100">الإنكار</h2>
+                    <h3 class="text-xl font-cairo text-slate-400 mb-8 tracking-widest uppercase">Denial / العتامة</h3>
+                    <p class="text-2xl leading-loose text-slate-300 mb-8 border-r-4 border-slate-600 pr-6">
+                        "مستحيل أن يكون هو.. بالتأكيد هناك سوء فهم!"<br>
+                        حيلة دفاعية يمارسها العقل لامتصاص الصدمة. يرفض العقل تصديق أن الشخص الذي منحه الأمان هو ذاته مصدر التهديد والألم.
+                    </p>
+                    <div class="bg-slate-800/50 backdrop-blur-md p-6 rounded-l-2xl border-l border-slate-600 font-cairo text-sm text-slate-400">
+                        <i data-lucide="eye-off" class="w-6 h-6 mb-3 text-slate-300"></i>
+                        في هذه المرحلة، نكذب أعيننا، ونصدق أكاذيبهم، لأن الحقيقة أثقل من أن يحتملها القلب دفعة واحدة.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المرحلة 2: الغضب -->
+        <section class="stage-section bg-red-950 paper-texture text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?auto=format&fit=crop&q=80&w=1920" alt="نار وشرار" class="w-full h-full object-cover opacity-50 mix-blend-color-burn">
+                <div class="img-overlay" style="background: linear-gradient(to right, rgba(69,10,10,0.95) 0%, rgba(69,10,10,0.6) 50%, transparent 100%);"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto w-full px-6 md:px-12 content-z flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <span class="text-6xl md:text-9xl font-black text-red-900 opacity-50 absolute -top-10 -right-10 md:-top-20 md:right-0">02</span>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-2 text-red-100">الغضب</h2>
+                    <h3 class="text-xl font-cairo text-red-400 mb-8 tracking-widest uppercase">Anger / الاحتراق</h3>
+                    <p class="text-2xl leading-loose text-red-200 mb-8 border-r-4 border-red-600 pr-6">
+                        "كيف تجرأ على فعل ذلك بي؟ وكيف كنت غبية لأصدقه؟"<br>
+                        حين يسقط جدار الإنكار، يتدفق الغضب كطوفان. غضب مشتعل تجاه "الوغد" لتلاعبه، وغضب أقسى موجه نحو الذات.
+                    </p>
+                    <div class="bg-red-900/50 backdrop-blur-md p-6 rounded-l-2xl border-l border-red-500/50 font-cairo text-sm text-red-200">
+                        <i data-lucide="flame" class="w-6 h-6 mb-3 text-red-400"></i>
+                        الغضب هنا ليس عليهم فقط، بل هو سياط نجلد بها تلك النسخة الساذجة منا التي صدقتهم.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المرحلة 3: المساومة -->
+        <section class="stage-section bg-amber-900 paper-texture text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1518818419601-12c82972ba78?auto=format&fit=crop&q=80&w=1920" alt="طريق مفترق أو توازن" class="w-full h-full object-cover opacity-30 sepia">
+                <div class="img-overlay" style="background: linear-gradient(to right, rgba(120,53,15,0.95) 0%, rgba(120,53,15,0.6) 50%, transparent 100%);"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto w-full px-6 md:px-12 content-z flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <span class="text-6xl md:text-9xl font-black text-amber-800 opacity-50 absolute -top-10 -right-10 md:-top-20 md:right-0">03</span>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-2 text-amber-100">المساومة</h2>
+                    <h3 class="text-xl font-cairo text-amber-400 mb-8 tracking-widest uppercase">Bargaining / التشبث</h3>
+                    <p class="text-2xl leading-loose text-amber-100 mb-8 border-r-4 border-amber-600 pr-6">
+                        "ماذا لو كنت أكثر صبراً؟ ماذا لو تغيرت أنا ليرضى؟"<br>
+                        محاولة يائسة لاستعادة السيطرة. العقل يخلق سيناريوهات وهمية لتجنب ألم الفقد النهائي، فيلجأ لاستجداء الفتات.
+                    </p>
+                    <div class="bg-amber-800/50 backdrop-blur-md p-6 rounded-l-2xl border-l border-amber-500/50 font-cairo text-sm text-amber-200">
+                        <i data-lucide="scale" class="w-6 h-6 mb-3 text-amber-400"></i>
+                        المساومة هي محاولة بائسة لترميم زجاج تهشم بالكامل بكلمة "ماذا لو". هي أمل كاذب نُطعم به جراحنا.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المرحلة 4: الاكتئاب -->
+        <section class="stage-section bg-indigo-950 paper-texture text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?auto=format&fit=crop&q=80&w=1920" alt="مطر ونافذة داكنة" class="w-full h-full object-cover opacity-40">
+                <div class="img-overlay" style="background: linear-gradient(to right, rgba(30,27,75,0.95) 0%, rgba(30,27,75,0.7) 50%, transparent 100%);"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto w-full px-6 md:px-12 content-z flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <span class="text-6xl md:text-9xl font-black text-indigo-900 opacity-50 absolute -top-10 -right-10 md:-top-20 md:right-0">04</span>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-2 text-indigo-100">الاكتئاب</h2>
+                    <h3 class="text-xl font-cairo text-indigo-400 mb-8 tracking-widest uppercase">Depression / السقوط</h3>
+                    <p class="text-2xl leading-loose text-indigo-200 mb-8 border-r-4 border-indigo-600 pr-6">
+                        "لقد خسرت كل شيء.. لا طاقة لي للحياة."<br>
+                        سقوط الوهم بالكامل. إدراك قاسٍ لحجم الخسارة؛ ليس خسارة الشخص، بل خسارة سنوات العمر وشظايا الروح التي استُنزفت.
+                    </p>
+                    <div class="bg-indigo-900/50 backdrop-blur-md p-6 rounded-l-2xl border-l border-indigo-500/50 font-cairo text-sm text-indigo-200">
+                        <i data-lucide="cloud-rain" class="w-6 h-6 mb-3 text-indigo-400"></i>
+                        نحن في هذه المرحلة لا نبكيهم.. نحن نبكي أنفسنا التي فقدناها في محاولاتنا المستميتة لإرضاء من لا يرضى.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المرحلة 5: القبول -->
+        <section class="stage-section bg-emerald-50 text-slate-900">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" alt="نور الشمس والبحر" class="w-full h-full object-cover opacity-20">
+                <div class="img-overlay" style="background: linear-gradient(to right, rgba(248,250,252,0.95) 0%, rgba(248,250,252,0.8) 50%, rgba(248,250,252,0.2) 100%);"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto w-full px-6 md:px-12 content-z flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <span class="text-6xl md:text-9xl font-black text-emerald-100 opacity-80 absolute -top-10 -right-10 md:-top-20 md:right-0">05</span>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-2 text-emerald-900">القبول</h2>
+                    <h3 class="text-xl font-cairo text-emerald-600 mb-8 tracking-widest uppercase">Acceptance / النور</h3>
+                    <p class="text-2xl leading-loose text-slate-700 mb-8 border-r-4 border-emerald-500 pr-6 font-bold">
+                        "لقد كان درساً قاسياً.. ولكنه انتهى. أنا أمضي قدماً."<br>
+                        الاعتراف بالحقيقة دون مقاومة. تقبل أن هذا الشخص مؤذٍ وأن العلاقة ماتت. هنا تلتئم الجراح، وتبدأ الحياة الحقيقية بعيداً عن الجلاد.
+                    </p>
+                    <div class="bg-white/60 backdrop-blur-md p-6 rounded-l-2xl border-l border-emerald-500 font-cairo text-sm text-slate-800 shadow-xl">
+                        <i data-lucide="sun" class="w-6 h-6 mb-3 text-emerald-600"></i>
+                        القبول هو أن تلملم ما تبقى من روحك، وتعطي ظهرك للخراب، وتصنع من هذا الألم درعاً كي لا تُلدغ مرتين.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- خاتمة كأنها صفحة كتاب مع اقتباس صريح -->
+    <section class="py-24 bg-[#f4f1ea] text-[#2c2825] relative border-t-8 border-emerald-800 paper-texture z-40">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <i data-lucide="book-open" class="w-12 h-12 mx-auto text-emerald-800 mb-8"></i>
+            <h3 class="font-cairo text-2xl font-bold mb-8 uppercase tracking-widest text-emerald-900">من وحي الكتاب</h3>
+            
+            <p class="text-3xl md:text-4xl leading-loose mb-12">
+                "التعافي ليس خطاً مستقيماً تتصاعد فيه نحو الشفاء، بل هو موجات من الانتكاسات. قد تصل للقبول، ثم يوقظك حنين مفاجئ لتعود لمربع المساومة. <span class="text-emerald-800 font-bold">لا بأس، هذه أعراض انسحاب السم لا أكثر.</span>"
+            </p>
+            
+            <hr class="w-32 border-emerald-800 mx-auto mb-12">
+            
+            <!-- التوقيع والعلامة الشخصية -->
+            <div class="font-cairo flex flex-col items-center justify-center">
+                <p class="text-sm text-[#5c544d] mb-4 uppercase tracking-widest">تصميم ورؤية بصرية</p>
+                <div class="signature text-4xl text-rose-800 mb-2">قيس جازي</div>
+                <p class="text-xs text-[#5c544d] mt-4">مشروع محاكاة لفصل "التعافي" من كتاب أحببت وغداً - د. عماد رشاد عثمان</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
